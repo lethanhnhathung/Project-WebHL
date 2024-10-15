@@ -1,0 +1,39 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block body %}
+<div class="flex flex-row w-full justify-end py-6 pr-8">
+    <a href="{{ path('products_create') }} " class='btn btn-success p-2'>Create</a>
+</div>
+
+    <div class="relative overflow-x-auto" data-example-id="striped-table">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr >
+                <th scope="col" class="px-6 py-3" >ID</th>
+                <th scope="col" class="px-6 py-3">Name Product</th>
+                <th scope="col" class="px-6 py-3">Quantity Product</th>
+                <th scope="col" class="px-6 py-3">Price Product</th>
+                 <th scope="col" class="px-6 py-3">Action</th>
+                {# <td>Image Product </td> #}
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for product in products %}
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th scope="row">{{ product.id }}</th>
+                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ product.nameProduct }}</td>
+                    <td class="px-6 py-4">{{ product.quantityProduct }}</td>
+                    <td class="px-6 py-4">{{ product.priceProduct }}</td>
+				   
+<td >
+                        <a href="{{ path('product_edit', {'id':  product.id }) }} " class='bg-green-500 hover:bg-green-400 p-1 text-white rounded-sm shadow-sm'>View</a>
+                        <a href="{{ path('product_edit', {'id': product.id}) }}" class='bg-blue-500 hover:bg-blue-400 p-1 text-white rounded-sm shadow-sm'>Edit</a>
+                        <a href="{{ path('product_delete', {'id': product.id}) }}" class='bg-red-500 hover:bg-red-400 p-1 text-white rounded-sm shadow-sm'>Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
